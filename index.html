@@ -137,14 +137,16 @@
   .play-hint span{font-size:11px;display:block;margin-top:3px;color:var(--pink3);}
   .tts-warn{background:var(--pink2);border-radius:12px;padding:10px 14px;font-size:12px;font-weight:700;color:var(--pink6);margin-bottom:12px;display:none;}
 
-  .opts-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+  .opts-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
   .opt-btn{
     background:var(--card);border:2.5px solid var(--border);border-radius:20px;
-    padding:15px 8px;font-size:16px;font-weight:700;color:var(--text);
+    padding:12px 6px;font-size:14px;font-weight:700;color:var(--text);
     font-family:'Nunito',sans-serif;cursor:pointer;text-align:center;
     box-shadow:0 3px 12px rgba(232,72,122,0.08);
     transition:transform 0.12s,border-color 0.15s,background 0.15s;
     -webkit-tap-highlight-color:transparent;line-height:1.3;
+    min-height:80px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;word-break:break-word;
   }
   .opt-btn:hover:not(:disabled){transform:translateY(-2px);border-color:var(--pink4);background:var(--soft);}
   .opt-btn:active:not(:disabled){transform:scale(0.97);}
@@ -491,7 +493,9 @@ function renderQ(){
     }else if(cat==='numeros'){
       b.style.fontSize='32px';b.textContent=o.n;
     }else{
-      b.innerHTML='<div style="font-size:26px;margin-bottom:5px">'+o.e+'</div><div style="font-size:13px">'+o.n+'</div>';
+      const nombreLen=o.n.length;
+      const fs=nombreLen>12?'11px':nombreLen>8?'12px':'13px';
+      b.innerHTML='<div style="font-size:24px;margin-bottom:4px;line-height:1">'+o.e+'</div><div style="font-size:'+fs+';line-height:1.2">'+o.n+'</div>';
     }
     b.onclick=()=>checkA(o.n,q.n,b);
     grid.appendChild(b);
