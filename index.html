@@ -462,7 +462,8 @@ function startGame(c){
     comidas:'¡Vamos a jugar con comidas! ¿Cuál escuchás?',
     personajes:'¡Vamos a jugar con personajes mágicos! Escuchá bien y elegí.'
   };
-  speak(welcomes[c],()=>setTimeout(renderQ,300),0.88,1.2);
+  speak(welcomes[c],null,0.88,1.2);
+  setTimeout(renderQ,300);
 }
 function replayGame(){startGame(cat);}
 
