@@ -35,7 +35,6 @@
     justify-content: center;
     padding: 20px 16px 48px;
   }
-  /* soft dot pattern background */
   body::before {
     content:'';
     position:fixed; inset:0;
@@ -49,61 +48,50 @@
   .screen { display:none; }
   .screen.active { display:block; }
 
-  /* ── HOME ── */
   .header { text-align:center; padding:28px 0 24px; }
   .header-stars { font-size:13px; letter-spacing:4px; color:var(--pink4); margin-bottom:8px; }
-  .header h1 {
-    font-family:'Fredoka One', cursive;
-    font-size:38px; font-weight:400;
-    color:var(--pink5); margin-bottom:4px;
-    letter-spacing:0.5px;
-  }
+  .header h1 { font-family:'Fredoka One',cursive; font-size:38px; font-weight:400; color:var(--pink5); margin-bottom:4px; }
   .header p { font-size:15px; color:var(--muted); font-weight:600; }
 
-  /* 5-circle layout: row of 2 big + row of 3 */
-  .cat-area { padding: 0 8px; }
+  .cat-area { padding:0 8px; }
   .cat-row { display:flex; justify-content:center; gap:18px; margin-bottom:18px; }
   .cat-row.three { gap:14px; }
 
   .cat-circle {
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     cursor:pointer; -webkit-tap-highlight-color:transparent;
-    transition: transform 0.18s, box-shadow 0.18s;
+    transition:transform 0.18s, box-shadow 0.18s;
+    opacity:0; animation:fadeUp 0.4s forwards;
   }
+  .cat-circle:nth-child(1){animation-delay:0.05s}
+  .cat-circle:nth-child(2){animation-delay:0.12s}
+  .cat-row.three .cat-circle:nth-child(1){animation-delay:0.19s}
+  .cat-row.three .cat-circle:nth-child(2){animation-delay:0.26s}
+  .cat-row.three .cat-circle:nth-child(3){animation-delay:0.33s}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
   .cat-circle:hover  { transform:translateY(-4px) scale(1.04); }
   .cat-circle:active { transform:scale(0.96); }
 
   .circle-bubble {
-    border-radius: 50%;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow: 0 6px 22px rgba(232,72,122,0.18);
-    border: 3px solid rgba(255,255,255,0.7);
-    margin-bottom:10px;
-    transition: box-shadow 0.18s;
-    position:relative;
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 22px rgba(232,72,122,0.18); border:3px solid rgba(255,255,255,0.7);
+    margin-bottom:10px; transition:box-shadow 0.18s;
   }
-  .cat-circle:hover .circle-bubble {
-    box-shadow: 0 10px 32px rgba(232,72,122,0.28);
-  }
-
-  .row-big .circle-bubble  { width:130px; height:130px; font-size:50px; }
+  .cat-circle:hover .circle-bubble { box-shadow:0 10px 32px rgba(232,72,122,0.28); }
+  .row-big .circle-bubble   { width:130px; height:130px; font-size:50px; }
   .row-three .circle-bubble { width:110px; height:110px; font-size:42px; }
 
-  .bubble-animales { background: linear-gradient(145deg,#FFE0EE,#FFBFD8); }
-  .bubble-colores  { background: linear-gradient(145deg,#FFC8D8,#FF9EC0); }
-  .bubble-numeros  { background: linear-gradient(145deg,#FFD6E8,#FFAACB); }
-  .bubble-letras   { background: linear-gradient(145deg,#FFCCE0,#FF8FB5); }
-  .bubble-comidas  { background: linear-gradient(145deg,#FFE6EF,#FFB8D0); }
+  .bubble-animales { background:linear-gradient(145deg,#FFE0EE,#FFBFD8); }
+  .bubble-colores  { background:linear-gradient(145deg,#FFC8D8,#FF9EC0); }
+  .bubble-numeros  { background:linear-gradient(145deg,#FFD6E8,#FFAACB); }
+  .bubble-letras   { background:linear-gradient(145deg,#FFCCE0,#FF8FB5); }
+  .bubble-comidas  { background:linear-gradient(145deg,#FFE6EF,#FFB8D0); }
 
-  .cat-name {
-    font-family:'Fredoka One', cursive;
-    font-size:16px; color:var(--pink5);
-    letter-spacing:0.3px; text-align:center;
-  }
-  .row-big .cat-name  { font-size:17px; }
-  .cat-qty { font-size:11px; color:var(--muted); font-weight:700; margin-top:1px; text-align:center; }
+  .cat-name { font-family:'Fredoka One',cursive; font-size:16px; color:var(--pink5); letter-spacing:0.3px; text-align:center; }
+  .row-big .cat-name { font-size:17px; }
+  .cat-qty  { font-size:11px; color:var(--muted); font-weight:700; margin-top:1px; text-align:center; }
 
-  /* ── GAME HEADER ── */
   .game-header { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
   .back-icon {
     width:40px; height:40px; border-radius:50%;
@@ -119,7 +107,6 @@
   .prog-bar { height:10px; border-radius:99px; background:linear-gradient(90deg,var(--pink4),var(--pink5)); transition:width 0.5s; }
   .score-badge { background:var(--pink2); border-radius:14px; padding:5px 11px; font-size:14px; font-weight:800; color:var(--pink5); flex-shrink:0; }
 
-  /* ── AUDIO CARD ── */
   .audio-card {
     background:var(--card); border-radius:var(--radius); padding:30px 20px 26px;
     text-align:center; box-shadow:var(--shadow); margin-bottom:16px;
@@ -140,11 +127,8 @@
   .play-btn:hover  { transform:scale(1.06); box-shadow:0 10px 30px rgba(232,72,122,0.4); }
   .play-btn:active { transform:scale(0.97); }
   .play-btn svg { width:44px; height:44px; fill:white; }
-  .play-btn.speaking {
-    background:linear-gradient(145deg,#FF9EC0,var(--pink4));
-    animation:pulse 0.75s infinite;
-  }
-  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.07)} }
+  .play-btn.speaking { background:linear-gradient(145deg,#FF9EC0,var(--pink4)); animation:pulse 0.75s infinite; }
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
 
   .play-hint { font-size:14px; color:var(--muted); font-weight:600; }
   .play-hint span { font-size:11px; display:block; margin-top:3px; color:var(--pink3); }
@@ -154,7 +138,6 @@
     font-size:12px; font-weight:700; color:var(--pink6); margin-bottom:12px; display:none;
   }
 
-  /* ── OPTIONS ── */
   .opts-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px; }
   .opt-btn {
     background:var(--card); border:2.5px solid var(--border); border-radius:20px;
@@ -169,10 +152,21 @@
   .opt-btn:disabled { cursor:default; }
   .opt-btn.correct { background:#E8F8EE; border-color:var(--green); color:#1D7A45; animation:pop 0.3s ease; }
   .opt-btn.wrong   { background:#FFF0F2; border-color:var(--red);   color:#C0003A; animation:shake 0.35s ease; }
-  @keyframes pop   { 0%{transform:scale(1)} 50%{transform:scale(1.06)} 100%{transform:scale(1)} }
-  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+  @keyframes pop  {0%{transform:scale(1)}50%{transform:scale(1.07)}100%{transform:scale(1)}}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 
-  .feedback { text-align:center; font-size:18px; font-weight:800; min-height:26px; margin-bottom:12px; }
+  /* confetti burst on correct */
+  .confetti-wrap { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
+  .confetti-piece {
+    position:absolute; width:10px; height:10px; border-radius:2px;
+    animation:confettiFall 1.1s ease-in forwards;
+  }
+  @keyframes confettiFall{
+    0%  {transform:translateY(-20px) rotate(0deg);   opacity:1;}
+    100%{transform:translateY(100vh) rotate(720deg); opacity:0;}
+  }
+
+  .feedback { text-align:center; font-size:19px; font-weight:800; min-height:28px; margin-bottom:12px; }
   .feedback.ok   { color:var(--green); }
   .feedback.nope { color:var(--red); }
 
@@ -187,7 +181,6 @@
   .next-btn:hover  { transform:translateY(-1px); box-shadow:0 7px 22px rgba(232,72,122,0.35); }
   .next-btn:active { transform:scale(0.98); }
 
-  /* ── RESULT ── */
   .result-card {
     background:var(--card); border-radius:var(--radius); padding:36px 24px 32px;
     text-align:center; box-shadow:var(--shadow); margin-top:10px;
@@ -205,24 +198,11 @@
     font-size:16px; font-weight:800; font-family:'Nunito',sans-serif;
     cursor:pointer; transition:all 0.15s; -webkit-tap-highlight-color:transparent;
   }
-  .res-btn.primary {
-    background:linear-gradient(90deg,var(--pink4),var(--pink5));
-    color:#fff; border:none;
-    box-shadow:0 4px 16px rgba(232,72,122,0.25);
-  }
+  .res-btn.primary { background:linear-gradient(90deg,var(--pink4),var(--pink5)); color:#fff; border:none; box-shadow:0 4px 16px rgba(232,72,122,0.25); }
   .res-btn.primary:hover { transform:translateY(-1px); }
   .res-btn.secondary { background:transparent; border:2.5px solid var(--border); color:var(--text); }
   .res-btn.secondary:hover { background:var(--pink2); }
   .res-btn:active { transform:scale(0.98); }
-
-  /* stagger entrance anim for circles */
-  .cat-circle { opacity:0; animation: fadeUp 0.4s forwards; }
-  .cat-circle:nth-child(1){ animation-delay:0.05s }
-  .cat-circle:nth-child(2){ animation-delay:0.12s }
-  .cat-row.three .cat-circle:nth-child(1){ animation-delay:0.19s }
-  .cat-row.three .cat-circle:nth-child(2){ animation-delay:0.26s }
-  .cat-row.three .cat-circle:nth-child(3){ animation-delay:0.33s }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
 </style>
 </head>
 <body>
@@ -240,12 +220,12 @@
         <div class="cat-circle" onclick="startGame('animales')">
           <div class="circle-bubble bubble-animales">🐘</div>
           <div class="cat-name">Animales</div>
-          <div class="cat-qty">40 animales</div>
+          <div class="cat-qty">50 animales</div>
         </div>
         <div class="cat-circle" onclick="startGame('colores')">
           <div class="circle-bubble bubble-colores">🎨</div>
           <div class="cat-name">Colores</div>
-          <div class="cat-qty">15 colores</div>
+          <div class="cat-qty">18 colores</div>
         </div>
       </div>
       <div class="cat-row three row-three">
@@ -257,7 +237,7 @@
         <div class="cat-circle" onclick="startGame('comidas')">
           <div class="circle-bubble bubble-comidas">🍎</div>
           <div class="cat-name">Comidas</div>
-          <div class="cat-qty">25 comidas</div>
+          <div class="cat-qty">35 comidas</div>
         </div>
         <div class="cat-circle" onclick="startGame('letras')">
           <div class="circle-bubble bubble-letras">🔤</div>
@@ -273,26 +253,19 @@
     <div class="game-header">
       <div class="back-icon" onclick="goHome()">←</div>
       <div class="prog-wrap">
-        <div class="prog-top">
-          <span id="prog-label">Pregunta 1 de 10</span>
-        </div>
+        <div class="prog-top"><span id="prog-label">Pregunta 1 de 10</span></div>
         <div class="prog-bar-bg"><div class="prog-bar" id="prog-bar" style="width:10%"></div></div>
       </div>
       <div class="score-badge" id="score-badge">⭐ 0</div>
     </div>
-
     <div class="audio-card">
       <div class="audio-label" id="audio-label">¿Qué animal escuchás?</div>
       <div class="tts-warn" id="tts-warn">⚠️ Tu navegador no tiene voz en español. Probá con Chrome o Safari.</div>
       <button class="play-btn" id="play-btn" onclick="speakCurrent()">
         <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
       </button>
-      <div class="play-hint">
-        Tocá para escuchar
-        <span>Podés tocarlo cuantas veces quieras</span>
-      </div>
+      <div class="play-hint">Tocá para escuchar<span>Podés tocarlo cuantas veces quieras</span></div>
     </div>
-
     <div class="opts-grid" id="opts-grid"></div>
     <div class="feedback" id="feedback"></div>
     <button class="next-btn" id="next-btn" onclick="nextQ()">Siguiente →</button>
@@ -328,14 +301,18 @@ const DATA = {
     {n:'Dinosaurio',e:'🦕'},{n:'Unicornio',e:'🦄'},{n:'Panda',e:'🐼'},
     {n:'Cocodrilo',e:'🐊'},{n:'Loro',e:'🦜'},{n:'Caracol',e:'🐌'},
     {n:'Araña',e:'🕷️'},{n:'Ballena',e:'🐳'},{n:'Camello',e:'🐪'},
-    {n:'Gorila',e:'🦍'},{n:'Flamenco',e:'🦩'},{n:'Mapache',e:'🦝'}
+    {n:'Gorila',e:'🦍'},{n:'Flamenco',e:'🦩'},{n:'Mapache',e:'🦝'},
+    {n:'Oso Polar',e:'🐻‍❄️'},{n:'Pavo Real',e:'🦚'},{n:'Canguro',e:'🦘'},
+    {n:'Hipopótamo',e:'🦛'},{n:'Rinoceronte',e:'🦏'},{n:'Murciélago',e:'🦇'},
+    {n:'Cisne',e:'🦢'},{n:'Águila',e:'🦅'},{n:'Canario',e:'🐦'},{n:'Toro',e:'🐂'}
   ],
   colores: [
     {n:'Rojo',e:'🔴'},{n:'Azul',e:'🔵'},{n:'Verde',e:'🟢'},
     {n:'Amarillo',e:'🟡'},{n:'Naranja',e:'🟠'},{n:'Morado',e:'🟣'},
     {n:'Rosa',e:'🩷'},{n:'Marrón',e:'🟤'},{n:'Negro',e:'⚫'},
     {n:'Blanco',e:'⚪'},{n:'Celeste',e:'🩵'},{n:'Gris',e:'🩶'},
-    {n:'Turquesa',e:'🫐'},{n:'Dorado',e:'🌟'},{n:'Plateado',e:'🪨'}
+    {n:'Turquesa',e:'🫐'},{n:'Dorado',e:'🌟'},{n:'Plateado',e:'🪨'},
+    {n:'Violeta',e:'💜'},{n:'Lima',e:'🍋'},{n:'Bordo',e:'🍷'}
   ],
   numeros: Array.from({length:20},(_,i)=>({n:String(i+1),e:String(i+1)})),
   letras: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(l=>({n:l,e:l})),
@@ -348,7 +325,10 @@ const DATA = {
     {n:'Huevo',e:'🥚'},{n:'Leche',e:'🥛'},{n:'Queso',e:'🧀'},
     {n:'Helado',e:'🍦'},{n:'Torta',e:'🎂'},{n:'Galletita',e:'🍪'},
     {n:'Pizza',e:'🍕'},{n:'Fideos',e:'🍝'},{n:'Sopa',e:'🍲'},
-    {n:'Miel',e:'🍯'}
+    {n:'Miel',e:'🍯'},{n:'Manteca',e:'🧈'},{n:'Yogur',e:'🥣'},
+    {n:'Aceituna',e:'🫒'},{n:'Ajo',e:'🧄'},{n:'Cebolla',e:'🧅'},
+    {n:'Pepino',e:'🥒'},{n:'Lechuga',e:'🥬'},{n:'Ananá',e:'🍍'},
+    {n:'Cereza',e:'🍒'},{n:'Kiwi',e:'🥝'}
   ]
 };
 
@@ -360,10 +340,51 @@ const LABELS = {
   comidas:'¿Qué comida escuchás?'
 };
 
+// Frases variadas y expresivas por categoría de resultado
+const FRASES_CORRECTO = [
+  '¡Muy bien! ¡Lo lograste!',
+  '¡Excelente! ¡Sos una campeona!',
+  '¡Fantástico! ¡Qué inteligente!',
+  '¡Correcto! ¡Eso es! ¡Bravo!',
+  '¡Genial! ¡Lo sabías!',
+  '¡Súper! ¡Qué crack sos!',
+  '¡Increíble! ¡Muy bien hecho!',
+  '¡Sí! ¡Eso es correcto! ¡Bravo!'
+];
+
+const FRASES_MAL = [
+  'Casi. ¡La próxima lo lográs!',
+  'No era esa. ¡Pero seguí intentando!',
+  'Ups, era otra. ¡Vos podés!',
+  '¡Casi! Seguí practicando.'
+];
+
+const FRASES_FINAL = {
+  perfect: [
+    '¡Diez de diez! ¡Perfecto! ¡Sos una superestrella! ¡Bravo, bravo, bravo!',
+    '¡Todas correctas! ¡Sos increíble! ¡Estoy muy orgullosa de vos!'
+  ],
+  great: [
+    '¡Qué bien lo hiciste! ¡Casi perfecta! ¡Sos muy inteligente!',
+    '¡Muy bien! ¡Casi todas bien! ¡Seguí así, campeona!'
+  ],
+  good: [
+    '¡Buen trabajo! ¡Cada vez aprendés más! ¡Vamos a seguir practicando!',
+    '¡Muy bien! ¡Seguís aprendiendo! ¡Qué orgullosa estoy!'
+  ],
+  keep: [
+    '¡Vamos a seguir practicando! ¡Cada día aprendés más! ¡Vos podés!',
+    '¡Ánimo! ¡La próxima te va a ir genial! ¡Seguí intentando!'
+  ]
+};
+
+const CONFETTI_COLORS = ['#FF80AA','#FFB3CC','#FF6B9D','#FFD6E7','#E8487A','#fff','#FFE066','#A8E6CF'];
+
 const TOTAL=10;
 let cat='',questions=[],current=0,score=0,answered=false,esVoice=null;
 
 function shuffle(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];}return r;}
+function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
 
 function show(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -383,13 +404,14 @@ if(typeof speechSynthesis!=='undefined'){
   loadVoices();
 }
 
-function speak(text,onend){
+function speak(text, onend, rate, pitch){
   if(typeof speechSynthesis==='undefined')return;
   speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(text);
   u.lang=esVoice?esVoice.lang:'es-AR';
   if(esVoice)u.voice=esVoice;
-  u.rate=0.88; u.pitch=1.1;
+  u.rate = rate  || 0.88;
+  u.pitch= pitch || 1.2;
   if(onend)u.onend=onend;
   speechSynthesis.speak(u);
 }
@@ -400,15 +422,46 @@ function speakCurrent(){
   if(!questions[current])return;
   const btn=document.getElementById('play-btn');
   btn.classList.add('speaking');
-  speak(getSpeak(questions[current]),()=>btn.classList.remove('speaking'));
-  setTimeout(()=>btn.classList.remove('speaking'),3500);
+  // Speak the question item slower and higher pitch so it's clear for kids
+  speak(getSpeak(questions[current]),()=>btn.classList.remove('speaking'), 0.78, 1.25);
+  setTimeout(()=>btn.classList.remove('speaking'),4000);
+}
+
+function launchConfetti(){
+  const wrap=document.createElement('div');
+  wrap.className='confetti-wrap';
+  document.body.appendChild(wrap);
+  for(let i=0;i<28;i++){
+    const p=document.createElement('div');
+    p.className='confetti-piece';
+    p.style.cssText=`
+      left:${10+Math.random()*80}%;
+      top:${-10+Math.random()*20}%;
+      background:${CONFETTI_COLORS[Math.floor(Math.random()*CONFETTI_COLORS.length)]};
+      width:${8+Math.random()*8}px;
+      height:${8+Math.random()*8}px;
+      animation-delay:${Math.random()*0.4}s;
+      animation-duration:${0.9+Math.random()*0.5}s;
+      border-radius:${Math.random()>0.5?'50%':'2px'};
+    `;
+    wrap.appendChild(p);
+  }
+  setTimeout(()=>wrap.remove(),2000);
 }
 
 function startGame(c){
   cat=c;current=0;score=0;answered=false;
   questions=shuffle(DATA[c]).slice(0,TOTAL);
   show('screen-game');
-  renderQ();
+  // Welcome message per category
+  const welcomes={
+    animales:'¡Vamos a jugar con animales! Escuchá bien y elegí el correcto.',
+    colores:'¡Vamos a jugar con colores! Escuchá y elegí.',
+    numeros:'¡Vamos a jugar con números! ¿Estás lista?',
+    letras:'¡Vamos a jugar con letras! Escuchá bien cada letra.',
+    comidas:'¡Vamos a jugar con comidas! ¿Cuál escuchás?'
+  };
+  speak(welcomes[c], ()=>setTimeout(renderQ,300), 0.88, 1.2);
 }
 function replayGame(){startGame(cat);}
 
@@ -462,19 +515,25 @@ function checkA(chosen,correct,btn){
   if(chosen===correct){
     score++;
     document.getElementById('score-badge').textContent='⭐ '+score;
-    fb.textContent='¡Muy bien! 🎉'; fb.className='feedback ok';
     btn.classList.add('correct');
-    speak('¡Muy bien!');
+    // Extra celebration every 3 correct in a row
+    const frase=pick(FRASES_CORRECTO);
+    fb.textContent='¡Muy bien! 🎉';
+    fb.className='feedback ok';
+    launchConfetti();
+    speak(frase, null, 0.9, 1.3);
   } else {
     btn.classList.add('wrong');
-    fb.textContent='Era: '+correct+' 💪'; fb.className='feedback nope';
-    speak('Era '+correct+'. ¡La próxima!');
+    const frase=pick(FRASES_MAL)+' Era: '+correct;
+    fb.textContent='Era: '+correct+' 💪';
+    fb.className='feedback nope';
+    speak(frase, null, 0.88, 1.15);
   }
 
   if(current+1<questions.length){
     document.getElementById('next-btn').style.display='block';
   } else {
-    setTimeout(showResult,1600);
+    setTimeout(showResult,2000);
   }
 }
 
@@ -484,17 +543,23 @@ function showResult(){
   if(typeof speechSynthesis!=='undefined')speechSynthesis.cancel();
   show('screen-result');
   const p=score/TOTAL;
-  let icon,title,sub,stars;
-  if(p===1)      {icon='🏆';title='¡Perfecto!';       sub='¡Todas correctas! ¡Sos una campeona!';stars='⭐⭐⭐';}
-  else if(p>=0.8){icon='🌟';title='¡Muy bien!';       sub='¡Casi perfecta, excelente!';          stars='⭐⭐⭐';}
-  else if(p>=0.6){icon='😊';title='¡Buen intento!';   sub='Seguís aprendiendo muy bien';         stars='⭐⭐';}
-  else           {icon='💪';title='¡A practicar más!';sub='Cada vez te va a salir mejor';        stars='⭐';}
+  let icon,title,sub,stars,fraseKey;
+  if(p===1)      {icon='🏆';title='¡Perfecto!';       sub='¡Todas correctas! ¡Sos una campeona!';stars='⭐⭐⭐';fraseKey='perfect';}
+  else if(p>=0.8){icon='🌟';title='¡Muy bien!';       sub='¡Casi perfecta, excelente!';          stars='⭐⭐⭐';fraseKey='great';}
+  else if(p>=0.6){icon='😊';title='¡Buen intento!';   sub='¡Seguís aprendiendo muy bien!';       stars='⭐⭐'; fraseKey='good';}
+  else           {icon='💪';title='¡A practicar más!';sub='¡Cada vez te va a salir mejor!';      stars='⭐';  fraseKey='keep';}
+
   document.getElementById('res-icon').textContent=icon;
   document.getElementById('res-title').textContent=title;
   document.getElementById('res-sub').textContent=sub;
   document.getElementById('res-stars').textContent=stars;
   document.getElementById('res-score').textContent=score+'/'+TOTAL;
-  setTimeout(()=>speak(title+'. '+sub),400);
+
+  if(p>=0.6) launchConfetti();
+  if(p===1){setTimeout(launchConfetti,600);setTimeout(launchConfetti,1100);}
+
+  const frase=pick(FRASES_FINAL[fraseKey]);
+  setTimeout(()=>speak(frase, null, 0.84, 1.25), 500);
 }
 </script>
 </body>
